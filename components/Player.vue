@@ -1,46 +1,53 @@
 <template>
-    <div class="player-container">
-        <img :src="`/img/characters/polly/moving-${direction}-${position}.png`" alt="">
-    </div>
+  <div class="player-container">
+    <img
+      :src="`/img/characters/${character}/moving-${direction}-${position}.png`"
+      alt=""
+    />
+  </div>
 </template>
 
 <script setup>
-import {ref, onMounted, onUnmounted} from 'vue'
+import { ref, onMounted, onUnmounted } from "vue";
 
 const props = defineProps({
-    direction: {
-        type: String,
-        default: 'up'
-    },
-})
+  character: {
+    type: String,
+    default: "polly",
+  },
+  direction: {
+    type: String,
+    default: "up",
+  },
+});
 
 onMounted(() => {
   timer = setInterval(() => {
-    position.value < 3 ? position.value++ : position.value = 1
+    position.value < 3 ? position.value++ : (position.value = 1);
   }, 300);
-})
+});
 
 onUnmounted(() => {
-  clearInterval(timer)
-  timer.value = null
-})
+  clearInterval(timer);
+  timer.value = null;
+});
 
-const position = ref(1)
-let timer = ref(null)
+const position = ref(1);
+let timer = ref(null);
 </script>
 
 <style scoped>
 .player-container {
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .player-container img {
-    max-width: 100%;
-    max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 </style>

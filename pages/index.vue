@@ -3,6 +3,7 @@
   <img src="/img/objects/trees.png" alt="">
     <Player
       class="player"
+      character="polly"
       :direction="playerData.direction"
       :style="`top: ${coord.top}px; left: ${coord.left}px; `"
     />
