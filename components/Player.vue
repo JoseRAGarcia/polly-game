@@ -1,6 +1,6 @@
 <template>
     <div class="player-container">
-        <img :src="`assets/img/characters/polly/moving-${direction}-${position}.png`" alt="">
+        <img :src="`../assets/img/characters/polly/moving-${direction}-${position}.png`" alt="">
     </div>
 </template>
 
