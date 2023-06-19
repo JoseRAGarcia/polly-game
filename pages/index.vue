@@ -1,6 +1,6 @@
 <template>
   <div class="game-container" tabindex="0" @keydown="movePlayer">
-  <img src="@/assets/img/objects/trees.png" alt="">
+  <img src="/img/objects/trees.png" alt="">
     <Player
       class="player"
       :direction="playerData.direction"
@@ -50,7 +50,7 @@ function movePlayer(event) {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-image: url('@/assets/img/textures/grass.jpg');
+  background-image: url('/img/textures/grass.jpg');
   background-size: 300px;
 }
 .game-container img {
