@@ -19,21 +19,64 @@ const props = defineProps({
     type: String,
     default: "up",
   },
+  moving: {
+    type: Boolean,
+    default: false,
+  },
 });
 
+const position = ref(2);
+let timer = ref(null);
+const characterClass = ref("walker");
+
 onMounted(() => {
-  timer = setInterval(() => {
-    position.value < 3 ? position.value++ : (position.value = 1);
-  }, 300);
+  setCharacterClass();
 });
 
 onUnmounted(() => {
-  clearInterval(timer);
-  timer.value = null;
+  stopWalking();
 });
 
-const position = ref(1);
-let timer = ref(null);
+watch(
+  () => props.moving,
+  (newValue) => {
+    if (characterClass.value === "flyer") return;
+
+    if (newValue) {
+      startWalking();
+    } else {
+      stopWalking();
+    }
+  }
+);
+
+function setCharacterClass() {
+  switch (props.character) {
+    case "polly":
+      characterClass.value = "flyer";
+      break;
+    case "ramon":
+      characterClass.value = "walker";
+      break;
+  }
+
+  if (characterClass.value === "flyer") {
+    startWalking();
+  } else {
+    position.value = 2;
+  }
+}
+
+function startWalking() {
+  timer = setInterval(() => {
+    position.value < 4 ? position.value++ : (position.value = 1);
+  }, 300);
+}
+function stopWalking() {
+  position.value = 2
+  clearInterval(timer);
+  //timer.value = null;
+}
 </script>
 
 <style scoped>
